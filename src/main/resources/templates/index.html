@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>首页</title>
+	<meta name="keywords" content=" " />
+  <meta name="description" content=" " />
+
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/css.css" rel="stylesheet">
+    <link href="./css/animate.css" rel="stylesheet">
+<script src="./js/jquery.min.js"></script>
+<script src="./js/jquery.lazyload.min.js"></script>
+<script src="./js/bootstrap.min.js"></script>
+<script>
+  $(function() {
+      $("img.lazy").lazyload({
+          threshold : 200, // 设置阀值
+      });
+  }); 
+  </script>
+  </head>
+  <body>
+           <!-- 导航条 -->
+              <div class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="sr-only">切换导航</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="./index.html"><img src="./banner/logo.png" alt="首页" style="height:50px;"></a>
+                    </div>
+                    <div class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav daohang">
+                            <li class="active"><a href="./index.html">首页</a></li>
+                            <li><a href="./list_product.html">3D模型素材</a></li>
+                            <li><a href="./cart.html" class="glyphicon glyphicon-shopping-cart"><span id="totalid">0</span>购物车</a></li>
+                            <li><a href="./login.html" class="denglu">登录</a></li>
+                            <li><a href="./sign.html" class="zhuce">注册</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="navbar navbar-inverse navbar-fixed-top" style="border-radius:0;min-height: 40px;margin-bottom:0;top:50px;">
+              <div class="container">
+            <div class="row">
+              <div class="col-lg-12">
+                  <form>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="请输入关键词" style="border-radius: 15px;border:#7500bb;outline:0;">
+                  <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" style="border-radius: 15px;background:#7500bb;
+                    border:0;color:#fff;padding:7px 20px;" id="search">搜索</button>
+                  </span>
+                </div>
+                </form>
+                <script src="./js/search.js"></script>
+              </div>
+            </div>
+          </div>
+        </div>
+           <!-- 导航条 -->
+           <!-- banner图 -->
+        <link rel="stylesheet" type="text/css" href="./css/theshy.css"  />
+        <div id="banner">
+        <div class="slick slick_banner">
+        <div><img src="./banner/banner1.jpg" alt="" /></div>
+        <div><img src="./banner/banner2.jpg" alt="" /></div>
+        <div><img src="./banner/banner3.jpg" alt="" /></div>
+        </div>
+        <script type="text/javascript" src="./js/slick.min.js"></script>
+        <script>
+        $(document).ready(function(){  
+          $(".slick_banner").slick({
+            dots:true,
+                autoplay:true,
+                arrows:true,
+          });
+        })
+        </script>
+        </div>
+           <!-- banner图 -->
+           <!-- 列表 -->
+        <div class="container" style="padding:20px 0;">
+           <h2 class="xbt">3D模型素材</h2>
+        <div class="liebiao">
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a01">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="article_article.html"><img src="./images/img.png" data-original="./images/img.png"   alt="" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="article_article.html" style="color:#000;" class="name2">电脑</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">24.00</button>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a02">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png"   style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">键盘</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">62.00</button>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a03">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png"   style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">桌子</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">63.00</button>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a04">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png"   style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">凳子</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">29.00</button>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a05">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png"   style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">汽车</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">74.00</button>
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a06">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">宇宙</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">68.00</button>
+            
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a07">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">轮船</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">96.00</button>
+            
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a08">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">海洋</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">46.00</button>
+            
+            </div>
+          </div>
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a09">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">大陆</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">78.00</button>
+            
+            </div>
+          </div>
+          
+
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a10">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">航空</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">67.00</button>
+            
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a11">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">云</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">45.00</button>
+            
+            </div>
+          </div>
+
+          <div class="col-xs-12 col-sm-4 col-md-3"  id="a12">
+            <div style="border-radius: 15px;width:100%;overflow:hidden;background:#f0f0f0;box-shadow: 5px 5px 10px #888888;">
+            
+              <p style="overflow:hidden;position: relative;margin:0;">
+                <a href="#"><img src="./images/img.png" alt="" data-original="./images/img.png" style="width: 100%;" class="img2 lazy animated bounceInRight"></a>
+              </p>
+              <p style="color:#000;margin:10px;float: left;"><a href="#" style="color:#000;" class="name2">山水画</a></p>
+                <button class="price glyphicon glyphicon-shopping-cart">23.00</button>
+            
+            </div>
+          </div>
+         
+        </div>
+      </div>
+           <!-- 列表 -->
+           <!-- 底部 -->
+           <footer>
+            <div class="navbar-inverse">
+            <div class="container">
+              <div class="row">
+                <div class="weixinerdiv">
+                  <img class="weixiner" src="./banner/wx.jpg" alt="">
+                  <p>螺线科技</p>
+                </div>
+                <div class="foottext">
+                  <p>联系电话：18668215230</p>
+                  <p>地址：杭州市滨江区明豪大厦22楼</p>
+                  <p>Copyright &copy; 2019-2020 螺线科技&nbsp;版权所有&nbsp;&nbsp;
+                    <a href="http://www.beian.miit.gov.cn" target="_blank">备案号：沪XXXXXXXX</a></p>
+                </div>
+              </div>
+          </div>
+          </div>
+        </footer>
+        <!-- 底部 -->
+          <script src="./js/cart-index.js"></script>
+          <script src="./js/cart-total.js"></script>
+<script src="./js/canvas-nest.min.js"></script>
+  </body>
+</html>

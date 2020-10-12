@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+</head>
+<body>
+<form th:action="@{/login}" method="post">
+    <div>
+        <!--/*@thymesVar id="error" type=""*/-->
+        <span id="basic-addon0">&nbsp;</span>
+        <span style="font-size: 12px;color: red" th:text="${msg}" aria-describedby="basic-addon0"></span>
+        <br />
+    </div>
+    <div>
+        <span id="basic-addon1">用户名</span>
+        <input id="username" name="username" type="text" placeholder="用户名" aria-describedby="basic-addon1" />
+
+    </div>
+    <br />
+    <div>
+        <span id="basic-addon2">密码</span>
+        <input id="password" name="password" type="password" placeholder="密码" aria-describedby="basic-addon2" />
+    </div>
+    <!--<div class="form-group help">-->
+    <!--<input type="text" class="form-control" name="verifyCode" placeholder="验证码" required>-->
+    <!--</div>-->
+    <br />
+    <div class="form-group">
+    <!--<img src="getVerifyCode" title="看不清，请点我" onclick="refresh(this)" onmouseover="mouseover(this)"/>-->
+    <a href="/register" style="margin-left: 50px">没有账号？立即注册</a>
+    </div>
+    <button type="submit" style="width:190px;">登 录</button>
+
+</form>
+</body>
+</html>
