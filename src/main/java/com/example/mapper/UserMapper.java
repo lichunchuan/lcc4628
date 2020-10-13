@@ -14,6 +14,6 @@ public interface UserMapper {
 
 
     //    插入用户（注册）
-    @Insert("INSERT INTO `user`(`username`,`password`,`usertype`,`passwordVerify`) VALUES (#{username},#{password},#{usertype},#{passwordVerify})")
+    @Insert("INSERT INTO `user`(`username`,`password`,`usertype`,`passwordVerify`,`salt`) VALUES (#{username},#{password},#{usertype},#{passwordVerify},#{salt})")
     void insertUser(User user);
 }

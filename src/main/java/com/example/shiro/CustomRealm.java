@@ -12,6 +12,7 @@ import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -51,7 +52,7 @@ public class CustomRealm extends AuthorizingRealm {
             return null;
         }
         //通过simpleAuthenticationinfo做身份处理
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(users,users.get(0).getPassword(),getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(users,users.get(0).getPassword(),ByteSource.Util.bytes(users.get(0).getSalt()),getName());
         if (users.get(0).getUsertype().equals("1")){
             System.out.println("该用户是商家用户");
         }else{

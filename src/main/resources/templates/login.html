@@ -23,16 +23,21 @@
         <span id="basic-addon2">密码</span>
         <input id="password" name="password" type="password" placeholder="密码" aria-describedby="basic-addon2" />
     </div>
-    <!--<div class="form-group help">-->
-    <!--<input type="text" class="form-control" name="verifyCode" placeholder="验证码" required>-->
-    <!--</div>-->
+    验证码：<input type="text" name="verifyCode" placeholder="请输入验证码"><br>
+    <a href="#" style="color: blue" onclick="refreshCode()">换一个</a>
+    <img id="verifyCode" src="/getCode" style="margin-left: 16px"><br>
     <br />
     <div class="form-group">
-    <!--<img src="getVerifyCode" title="看不清，请点我" onclick="refresh(this)" onmouseover="mouseover(this)"/>-->
     <a href="/register" style="margin-left: 50px">没有账号？立即注册</a>
     </div>
     <button type="submit" style="width:190px;">登 录</button>
 
 </form>
+<script>
+    function refreshCode() {
+        document.getElementById("verifyCode").setAttribute("src","/getCode");
+    }
+</script>
+
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.example.pojo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.apache.ibatis.annotations.Param;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
@@ -24,5 +25,6 @@ public class User implements Serializable {
     private String usertype;
     @Column(name = "passwordVerify")
     private String passwordVerify;
-
+    @Column(name = "salt")
+    private String salt;
 }
