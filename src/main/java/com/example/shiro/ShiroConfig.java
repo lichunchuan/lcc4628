@@ -43,11 +43,13 @@ public class ShiroConfig {
         filterChainMap.put("/getCode","anon");
         filterChainMap.put("/index","anon");
         filterChainMap.put("/register","anon");
-        filterChainMap.put("/**","authc");
+        filterChainMap.put("/admin/**","authc");
+//        filterChainMap.put("/**", "authc");
+        filterChainMap.put("/**","anon");
         filterChainMap.put("/logout","logout");
         //设置拦截请求后跳转的url
         shiroFilterFactoryBean.setLoginUrl("/login");
-        shiroFilterFactoryBean.setSuccessUrl("/success");
+        shiroFilterFactoryBean.setSuccessUrl("/index");
         shiroFilterFactoryBean.setUnauthorizedUrl("/403");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainMap);
         shiroFilterFactoryBean.setSecurityManager(securityManager());

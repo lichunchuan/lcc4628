@@ -12,9 +12,7 @@ import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.subject.Subject;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -51,41 +49,59 @@ public class UserController {
     public String login() {
         return "login";
     }
-    @GetMapping("/index")
+    @GetMapping("/admin/index")
     public String index(){
+        return "admin/index";
+    }
+    @GetMapping("/index")
+    public String TemplateIndex(){
         return "index";
     }
-
+    @GetMapping("/success")
+    public String success(){
+        return "success";
+    }
     @PostMapping("/login")
+    @ResponseBody
     public String login(String username, String password,String verifyCode, Model model){
+        Result result=new Result();
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         Subject currentUser = SecurityUtils.getSubject();
-        model.addAttribute("msg","currentUser");
+        model.addAttribute("currentUser",currentUser);
         // 获取session中的验证码
         String verCode = (String) currentUser.getSession().getAttribute(SHIRO_VERIFY_SESSION);
         if("".equals(verifyCode)||(!verCode.equals(verifyCode))){
-            model.addAttribute("msg",ERROR_KAPTCHA);
-            return "login";
+
+            result.setData("验证码不正确");
+            return result.toString();
         }
         try{
             //主体提交登录请求到securitymanager
             currentUser.login(token);
         }catch (IncorrectCredentialsException ice){
-            model.addAttribute("msg","密码不正确");
+//            model.addAttribute("msg","密码不正确");
+            result.setData("密码不正确");
+            return result.toString();
         }catch (UnknownAccountException uae){
-            model.addAttribute("msg","账号不存在");
+            result.setData("账号不存在");
+            return result.toString();
         }catch (AuthenticationException ae){
-            model.addAttribute("msg","账号或密码有误");
+            result.setData("账号或密码错误");
+            return result.toString();
         }
         if(currentUser.isAuthenticated()){
             System.out.println("认证成功");
             String rolename = roleService.findRoleNameByUsername(username);
-            model.addAttribute("username",username);
-            model.addAttribute("rolename",rolename);
-            return "success";
+            result.setUserMsg(username);
+            result.setRoleMsg(rolename);
+//            model.addAttribute("username",username);
+//            model.addAttribute("rolename",rolename);
+            result.setData("认证成功");
+            return result.toString();
         }else {
             token.clear();
-            return "login";
+            result.setData("返回到登录页面重新登录");
+            return result.toString();
         }
 
     }
@@ -133,7 +149,7 @@ public class UserController {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
         model.addAttribute("msg","安全退出！");
-        return "login";
+        return "index";
     }
     @RequestMapping("/register")
     public String showRegister() {

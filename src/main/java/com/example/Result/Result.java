@@ -8,7 +8,9 @@ import java.io.Serializable;
 public class Result<T> implements Serializable {
     private int code;//状态码
 
-    private String msg;//信息
+    private String UserMsg;//信息
 
     private Object data;//数据
+
+    private String RoleMsg;
 }

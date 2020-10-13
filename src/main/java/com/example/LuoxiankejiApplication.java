@@ -18,6 +18,7 @@ public class LuoxiankejiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(LuoxiankejiApplication.class, args);
+
     }
 
 }

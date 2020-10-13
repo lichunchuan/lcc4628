@@ -3,14 +3,22 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <title>登录</title>
-    <link rel="stylesheet" type="text/css" href="/css/common.css" />
+    <link type="text/css" href="./css/bootstrap.min.css" rel="stylesheet">
+    <link type="text/css" href="./css/css.css" rel="stylesheet">
+    <link type="text/css" href="./css/animate.css" rel="stylesheet">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/login.js"></script>
+    <script src="./js/cart-total.js"></script>
+    <script src="./js/canvas-nest.min.js"></script>
 </head>
 <body>
 <form th:action="@{/login}" method="post">
     <div>
         <!--/*@thymesVar id="error" type=""*/-->
+        <!--th:text="${msg}"-->
         <span id="basic-addon0">&nbsp;</span>
-        <span style="font-size: 12px;color: red" th:text="${msg}" aria-describedby="basic-addon0"></span>
+        <span style="font-size: 12px;color: red"  aria-describedby="basic-addon0"></span>
         <br />
     </div>
     <div>
@@ -37,6 +45,7 @@
     function refreshCode() {
         document.getElementById("verifyCode").setAttribute("src","/getCode");
     }
+
 </script>
 
 </body>
