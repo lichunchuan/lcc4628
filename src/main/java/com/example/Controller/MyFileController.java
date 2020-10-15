@@ -96,9 +96,9 @@ public class MyFileController {
      * @param response
      * @功能描述 下载文件:
      */
-    @GetMapping("/download/{path}")
+    @PostMapping("/download/{path}")
     @ResponseBody
-    public String download(@RequestParam String path, HttpServletResponse response) {
+    public String download(@PathVariable String path, HttpServletResponse response) {
         try {
             // path是指想要下载的文件的路径
             File file = new File(path);
