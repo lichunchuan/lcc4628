@@ -28,4 +28,10 @@ public class UserServiceImpl implements UserService {
         user.setPassword(md5Hash.toString());
         userMapper.insertUser(user);
     }
+
+    @Override
+    public String findPasswordByUsername(String username) {
+        String password = userMapper.findPasswordByUsername(username);
+        return password;
+    }
 }

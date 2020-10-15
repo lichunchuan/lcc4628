@@ -15,4 +15,6 @@ public interface UserMapper {
     @Insert("INSERT INTO `user`(`username`,`password`,`usertype`,`passwordVerify`,`salt`) VALUES (#{username},#{password},#{usertype},#{passwordVerify},#{salt})")
     void insertUser(User user);
 
+    @Select("select password from user where username=#{username}")
+    String findPasswordByUsername(String username);
 }

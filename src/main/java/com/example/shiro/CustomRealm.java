@@ -1,13 +1,11 @@
 package com.example.shiro;
 
 
+import com.example.Result.Result;
 import com.example.mapper.RoleMapper;
 import com.example.mapper.UserMapper;
 import com.example.pojo.User;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
@@ -44,6 +42,7 @@ public class CustomRealm extends AuthorizingRealm {
 
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken Token) throws AuthenticationException {
+
         //获取用户输入的账号
         String username=(String) Token.getPrincipal();
         //通过username到数据库中查找到user实体
@@ -51,8 +50,18 @@ public class CustomRealm extends AuthorizingRealm {
         if(user==null){
             return null;
         }
+        //用户输入的密码
+        String oringnPassword = new String((char[]) Token.getCredentials());
+        String salt = user.getSalt();
+        //加密后的密码
+        String encodedPassword = ShiroEncrption.shiroEncryption(oringnPassword,salt);
+        System.out.println("密码："+encodedPassword);
+        if(!userMapper.findPasswordByUsername(username).equals(encodedPassword)) {
+            throw new AccountException("密码不正确");
+        }
         //通过simpleAuthenticationinfo做身份处理
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(user,user.getPassword(),ByteSource.Util.bytes(user.getSalt()),getName());
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(user,oringnPassword,ByteSource.Util.bytes(salt),getName());
+
         if (user.getUsertype().equals("1")){
             System.out.println("该用户是商家用户");
         }else{

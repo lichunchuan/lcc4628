@@ -6,6 +6,7 @@ import com.example.pojo.UserRole;
 import com.example.service.RoleService;
 import com.example.service.UserRoleService;
 import com.example.service.UserService;
+import com.example.shiro.ShiroEncrption;
 import com.google.code.kaptcha.impl.DefaultKaptcha;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -13,6 +14,7 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.apache.tomcat.util.security.MD5Encoder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -33,10 +35,11 @@ import java.util.List;
 @Controller
 public class UserController {
     private String ERROR_KAPTCHA = "验证码不正确";
-    /**
-     * session中的验证码
-     */
+//    /**
+//     * session中的验证码
+//     */
     private String SHIRO_VERIFY_SESSION = "verifySessionCode";
+   private RedisTemplate redisTemplate;
 
     @Resource
     private DefaultKaptcha defaultKaptcha;
@@ -70,18 +73,23 @@ public class UserController {
         UsernamePasswordToken token=new UsernamePasswordToken(username,password);
         Subject currentUser = SecurityUtils.getSubject();
         model.addAttribute("currentUser",currentUser);
-        // 获取session中的验证码
+//        // 获取session中的验证码
         String verCode = (String) currentUser.getSession().getAttribute(SHIRO_VERIFY_SESSION);
-        if("".equals(verifyCode)||(!verCode.equals(verifyCode))){
 
-            result.setData("验证码不正确");
+        System.out.println(verCode);
+        System.out.println(verifyCode);
+        if("".equals(verifyCode)){
+            result.setData("验证码不正确1");
+            return result.toString();
+        }
+        if(!verCode.equals(verifyCode)){
+            result.setData("验证码不正确2");
             return result.toString();
         }
         try{
             //主体提交登录请求到securitymanager
             currentUser.login(token);
         }catch (IncorrectCredentialsException ice){
-//            model.addAttribute("msg","密码不正确");
             result.setData("密码不正确");
             return result.toString();
         }catch (UnknownAccountException uae){
@@ -126,6 +134,7 @@ public class UserController {
             //生产验证码字符串并保存到session中
             String createText = defaultKaptcha.createText();
             request.getSession().setAttribute(SHIRO_VERIFY_SESSION,createText);
+
             //使用生产的验证码字符串返回一个BufferedImage对象并转为byte写入到byte数组中
             BufferedImage challenge = defaultKaptcha.createImage(createText);
             ImageIO.write(challenge,"jpg",jpegOutputStream);
@@ -162,9 +171,7 @@ public class UserController {
     public Result register(User user, Model model) throws IOException {
         Result result = new Result();
         String username = user.getUsername();
-//        if(username.equals(userService.findUserByUsername(username).getUsername())) {
-//                result.setData("手机号重复了");
-//        } else {
+
             userService.insertUser(user);
             Integer userId = userService.findUserByUsername(username).getId();
             System.out.println(userId);

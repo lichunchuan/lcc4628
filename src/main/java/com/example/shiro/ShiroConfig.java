@@ -77,7 +77,7 @@ public class ShiroConfig {
         @Bean
         public HashedCredentialsMatcher hashedCredentialsMatcher(){
             HashedCredentialsMatcher hashedCredentialsMatcher=new HashedCredentialsMatcher();
-            hashedCredentialsMatcher.setHashAlgorithmName("md5");
+            hashedCredentialsMatcher.setHashAlgorithmName("MD5");
             //散列的次数
             hashedCredentialsMatcher.setHashIterations(2);
             return hashedCredentialsMatcher;

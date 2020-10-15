@@ -9,4 +9,6 @@ public interface UserService {
     User findUserByUsername(String username);
 
     void insertUser(User user);
+
+    String findPasswordByUsername(String username);
 }
