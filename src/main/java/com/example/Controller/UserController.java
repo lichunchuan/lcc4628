@@ -13,6 +13,8 @@ import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -57,11 +59,11 @@ public class UserController {
     public String TemplateIndex(){
         return "index";
     }
-    @GetMapping("/success")
-    public String success(){
-        return "success";
-    }
-    @PostMapping("/login")
+//    @GetMapping("/success")
+//    public String success(){
+//        return "success";
+//    }
+    @RequestMapping(value = "/login",method = RequestMethod.POST,produces = {"application/json;charset=UTF-8"})
     @ResponseBody
     public String login(String username, String password,String verifyCode, Model model){
         Result result=new Result();
@@ -160,22 +162,27 @@ public class UserController {
     public Result register(User user, Model model) throws IOException {
         Result result = new Result();
         String username = user.getUsername();
+//        if(username.equals(userService.findUserByUsername(username).getUsername())) {
+//                result.setData("手机号重复了");
+//        } else {
             userService.insertUser(user);
-            Integer userId = userService.findUserByUsername(username).get(0).getId();
+            Integer userId = userService.findUserByUsername(username).getId();
             System.out.println(userId);
             System.out.println(Integer.valueOf(user.getUsertype()));
-            UserRole userRole=new UserRole();
+            UserRole userRole = new UserRole();
             userRole.setRoleId(Integer.valueOf(user.getUsertype()));
             userRole.setUserId(userId);
             userRoleService.insertUserRole(userRole);
             result.setData("注册成功");
             return result;
 
+
+
     }
     @RequestMapping(value = "/findUserByUsername", method = RequestMethod.GET)
     @ResponseBody
-    public List<User> findUserByUsername(@RequestParam String username){
-        List<User> users = userService.findUserByUsername(username);
-        return users;
+    public User findUserByUsername(@RequestParam String username){
+        User user = userService.findUserByUsername(username);
+        return user;
     }
 }

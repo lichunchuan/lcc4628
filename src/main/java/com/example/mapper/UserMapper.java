@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
     @Select("select * from user where username=#{username}")
-    List<User> findUserByUsername(String username);
+    User findUserByUsername(String username);
 
 
     //    插入用户（注册）

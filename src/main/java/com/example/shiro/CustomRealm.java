@@ -47,13 +47,13 @@ public class CustomRealm extends AuthorizingRealm {
         //获取用户输入的账号
         String username=(String) Token.getPrincipal();
         //通过username到数据库中查找到user实体
-        List<User> users =userMapper.findUserByUsername(username);
-        if(users==null){
+        User user =userMapper.findUserByUsername(username);
+        if(user==null){
             return null;
         }
         //通过simpleAuthenticationinfo做身份处理
-        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(users,users.get(0).getPassword(),ByteSource.Util.bytes(users.get(0).getSalt()),getName());
-        if (users.get(0).getUsertype().equals("1")){
+        SimpleAuthenticationInfo simpleAuthenticationInfo=new SimpleAuthenticationInfo(user,user.getPassword(),ByteSource.Util.bytes(user.getSalt()),getName());
+        if (user.getUsertype().equals("1")){
             System.out.println("该用户是商家用户");
         }else{
             System.out.println("该用户是买家用户");

@@ -1,6 +1,6 @@
 package com.example.shiro;
 
-import at.pollux.thymeleaf.shiro.dialect.ShiroDialect;
+
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
@@ -22,7 +22,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Properties;
 
-import static redis.clients.jedis.HostAndPort.localhost;
+
 
 
 @Configuration
@@ -109,10 +109,10 @@ public class ShiroConfig {
             return simpleMappingExceptionResolver;
         }
         /**用于thymeleaf模板使用shiro标签**/
-        @Bean
-        public ShiroDialect shiroDialect(){
-        return new ShiroDialect();
-        }
+//        @Bean
+//        public ShiroDialect shiroDialect(){
+//        return new ShiroDialect();
+//        }
         /**redisManager**/
         public RedisManager redisManager(){
             RedisManager redisManager=new RedisManager();
